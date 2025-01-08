@@ -37,7 +37,7 @@ const Wishlist = () => {
             
                     </div>
                     <img
-                      src={product.thumbnail}
+                      src={product.url[0]}
                       alt={product.title}
                       className="w-full  lg:w-full h-48 object-contain overflow-hidden rounded-t-lg mt-4"
                     />

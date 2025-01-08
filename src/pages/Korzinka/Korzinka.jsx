@@ -5,6 +5,8 @@ import logo from "../../assets/images/logo.svg";
 import { VscChromeClose } from "react-icons/vsc";
 import { Link } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
+import { decrementCart,incremented,removeFromCart,deleteAllCart} from '../../components/context/slices/cartSlice'
+import { RiDeleteBinLine } from "react-icons/ri";
 const Modal = ({ isOpen, onClose }) => {
   const [isAnimating, setIsAnimating] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -64,19 +66,16 @@ const Modal = ({ isOpen, onClose }) => {
 };
 
 const ConfirmationModal = ({ isOpen, onClose, onConfirm, title, message }) => {
-    if (!isOpen) return null;
-    const handleDelete = () => {
-        localStorage.removeItem('cart');
-        onClose(); // Close the modal after deletion
-      };
-    
+    if (!isOpen) return null;    
       const handleConfirm = () => {
         handleDelete();
         if (onConfirm) {
           onConfirm();
         }
+        onClose()
       };
       
+      const dispatch = useDispatch();
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center">
@@ -99,13 +98,13 @@ const ConfirmationModal = ({ isOpen, onClose, onConfirm, title, message }) => {
   
           <div className="flex gap-4 justify-center">
             <button
-              onClick={handleConfirm}
+              onClick={onClose}
               className="px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
             >
               Подтвердить
             </button>
             <button
-              onClick={handleDelete}
+              onClick={() => dispatch(deleteAllCart())}
               className="px-6 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
             >
               Отменить
@@ -118,9 +117,10 @@ const ConfirmationModal = ({ isOpen, onClose, onConfirm, title, message }) => {
 const Korzinka = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isModalOpens, setIsModalOpens] = useState(false);
-    const cartItems = useSelector((state) => state.cart.value);
-  let javob1 = cartItems?.reduce((a, b) => a + b.price * b.quantity, 0);
-  let javob = Math.floor(javob1);
+    const dispatch = useDispatch();
+    const  cartItems  = useSelector(state => state.cart.value);
+    let javob1 =cartItems?.reduce((a,b) => a + (b.price  * b.quantity),0)
+    let javob = Math.floor(javob1)
 
   return (
     <>
@@ -132,44 +132,50 @@ const Korzinka = () => {
           </button>
         </div>
         <div className="border-t border-gray-300">
-          <div className="grid grid-cols-4 gap-4 py-4 text-sm font-semibold text-gray-600">
+          <div className="grid grid-cols-5 gap-4 py-4 text-sm font-semibold text-gray-600">
             <div>ПРОДУКТ</div>
             <div className="text-center">ЦЕНА</div>
             <div className="text-center">КОЛИЧЕСТВО</div>
-            <div className="text-center">ИТОГО</div>
+            <div className="text-center">Скидка</div>
+            <div className="text-center">Выключать</div>
           </div>
-          <div className="grid grid-cols-4 gap-4 items-center border-t border-gray-300 py-4">
+          <div className="grid grid-cols-5 gap-4 items-center border-t border-gray-300 py-4">
             {cartItems?.map((product) => (
               <>
                 <div className="flex items-center space-x-4">
                   <img
-                    src={product.thumbnail}
+                    src={product.url[0]}
                     alt={product.name}
                     className="w-16 h-16 object-cover"
                   />
-                  <span className="text-sm font-medium">{product.name}</span>
+                  <span className="text-sm font-medium">{product.title}</span>
                 </div>
                 <div className="text-center text-sm">
                   {product.price.toLocaleString()} сумов
                 </div>
                 <div className="flex justify-center items-center space-x-2">
                   <button
-                   
+                     disabled={product.quantity <= 1}  onClick={()=>dispatch(decrementCart(product))}
                     className="bg-gray-200 text-gray-600 px-2 py-1 rounded"
                   >
                     -
                   </button>
                   <span className="text-sm font-medium">
-                 1
+                  <span>{product.quantity}</span>
                   </span>
                   <button
-                   
+                  onClick={() =>dispatch(incremented(product))}
+                 
                     className="bg-gray-200 text-gray-600 px-2 py-1 rounded"
                   >
                     +
                   </button>
                 </div>
-                <div className="text-center text-sm">{javob} сумов</div>
+                <div className="text-center text-sm">{product.price - 80} сумов</div>
+                <div className="text-center flex justify-center items-center text-sm">
+                <RiDeleteBinLine  onClick={() => dispatch(removeFromCart(product))} className=" text-xl cursor-pointer" />
+
+                </div>
               </>
             ))}
           </div>

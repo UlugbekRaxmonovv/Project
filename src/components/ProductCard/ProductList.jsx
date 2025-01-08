@@ -27,7 +27,7 @@ const ProductCard = ({ product }) => {
       </div>
       <Link to={`/single/${product.id}`}>
       <img
-        src={product.thumbnail}
+        src={product.url[0]}
         alt={product.title}
         className="w-full  lg:w-full h-48 object-contain overflow-hidden rounded-t-lg mt-4"
       />
@@ -40,12 +40,10 @@ const ProductCard = ({ product }) => {
           {[...Array(5)].map((_, index) => (
             <FaStar
               key={index}
-              className={`w-4 h-4 ${
-                index < Math.round(product.rating) ? "text-yellow-400" : "text-gray-300"
-              }`}
+              className={`w-4 h-4 text-yellow-400`}
             />
           ))}
-          <span className="opacity-0 lg:ml-2 text-gray-500 text-sm">({product.rating || 0} отзывов)</span>
+          <span className="opacity-0 lg:ml-2 text-gray-500 text-sm">(0 отзывов)</span>
         </div>
         <div className="flex items-center justify-between flex-wrap ">
           <span className="text-xl font-bold">{product.price} $</span>
@@ -66,8 +64,8 @@ const ProductList = ({title,titles}) => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("/products");
-        setProducts(response.data.products);
+        const response = await axios.get("/cards");        
+        setProducts(response.data);
       } catch (error) {
         console.error("Error fetching products:", error);
       }

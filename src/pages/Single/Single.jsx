@@ -20,7 +20,7 @@ const Single = () => {
 
   useEffect(() => {
     axios
-      .get(`/products/${id}`)
+      .get(`/cards/${id}`)
       .then((res) => {
         setData(res?.data);
       })
@@ -33,7 +33,7 @@ const Single = () => {
     <>
       <div className="container">
         <div className="flex flex-col md:flex-row gap-8 py-8">
-          <div className="w-full md:w-1/2 bg-white border shadow-md p-4 relative">
+          <div className="w-full md:w-[400px] bg-white border shadow-md p-4 relative">
             <div className="absolute top-2 left-2">
               <span className="bg-orange-500 text-white text-xs font-bold px-4 py-1 rounded">
                 New
@@ -50,12 +50,12 @@ const Single = () => {
               )}
             </div>
             <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
-              {data?.images?.map((img, index) => (
+              {data?.url?.map((img, index) => (
                 <SwiperSlide key={index}>
                   <img
                     src={img}
                     alt={`Product ${index + 1}`}
-                    className="w-full h-[300px] sm:h-[400px] md:h-[450px] lg:h-[500px] object-cover"
+                    className="w-full h-[300px] sm:h-[400px] md:h-[450px] lg:h-[300px] mt-8  object-cover"
                   />
                 </SwiperSlide>
               ))}
@@ -63,7 +63,7 @@ const Single = () => {
           </div>
           <div className="w-full md:w-1/2">
             <h3 className="text-3xl font-bold mb-4">{data?.title}</h3>
-            <p className="text-lg text-gray-600 mb-4">{data?.description}</p>
+            <p className="text-lg text-gray-600 mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione modi reprehenderit, vero blanditiis consequuntur quae quidem dicta eligendi dolorum ab maiores nostrum eum laborum. Accusamus quod placeat pariatur in excepturi.</p>
 
             <div className="flex items-center mb-4">
               {[...Array(5)].map((_, index) => (
