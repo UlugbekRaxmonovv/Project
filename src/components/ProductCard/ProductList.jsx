@@ -9,7 +9,23 @@ import { Link } from "react-router-dom";
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
   const wishlist = useSelector(state => state.wishlist.value);
+  const [quantity, setQuantity] = useState(0); 
 
+  const handleAddToCart = () => {
+    setQuantity(1); 
+    dispatch(addToCart(product)); 
+  };
+
+  const incrementQuantity = () => {
+    setQuantity(prev => prev + 1);
+  };
+
+  const decrementQuantity = () => {
+    setQuantity(prev => (prev > 1 ? prev - 1 : 0)); 
+    if (quantity === 1) {
+      dispatch(removeFromCart(product));
+    }
+  };
   return (
     <div className="max-w-sm py-4 px-4 bg-white border shadow-md relative">
       <div className="absolute top-[2px] left-0">
@@ -47,9 +63,30 @@ const ProductCard = ({ product }) => {
         </div>
         <div className="flex items-center justify-between flex-wrap ">
           <span className="text-xl font-bold">{product.price} $</span>
-          <button   onClick={() =>dispatch(addToCart(product))} className="bg-pink-500 text-white px-4 py-2 rounded-sm hover:bg-pink-600 transition">
-            В корзину
-          </button>
+          {quantity === 0 ? (
+            <button
+              onClick={handleAddToCart}
+              className="bg-pink-500 text-white px-4 py-2 rounded-sm hover:bg-pink-600 transition"
+            >
+              В корзину
+            </button>
+          ) : (
+            <div className="flex items-center">
+              <button
+                onClick={decrementQuantity}
+                className="bg-pink-500 text-white px-3 py-2 rounded-l-sm hover:bg-pink-600 transition"
+              >
+                -
+              </button>
+              <span className="px-3 py-2">{quantity}</span>
+              <button
+                onClick={incrementQuantity}
+                className="bg-pink-500 text-white px-3 py-2 rounded-r-sm hover:bg-pink-600 transition"
+              >
+                +
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>
