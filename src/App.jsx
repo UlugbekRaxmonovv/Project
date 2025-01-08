@@ -15,6 +15,7 @@ import Gift from './pages/Gift/Gift'
 import Loyalty from './pages/Loyalty/Loyalty'
 import { Toaster } from 'react-hot-toast'
 import Navbar from './components/Navbar/Navbar'
+import Single from './pages/Single/Single'
 function App() {
 
   return (
@@ -33,6 +34,7 @@ function App() {
     <Route path='/korzinka' element={<Korzinka/>}/>
     <Route path='/contacts' element={<ContactSection/>}/>
     <Route path='/search' element={<SearchSection/>}/>
+    <Route path='/single/:id' element={<Single/>}/>
     <Route path='/pages/how-to-order' element={<Zakast/>}/>
     <Route path='/pages/loyalty' element={<Loyalty/>}/>
     <Route path='/pages/gifts-on-buy' element={<Gift/>}/>

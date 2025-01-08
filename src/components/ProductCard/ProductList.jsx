@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import axios from "../../api/index";
 import { AiFillHeart, AiOutlineHeart, AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import { FaStar } from "react-icons/fa";
 import {toggleHeart} from '../../components/context/slices/wishlistSlice'
 import { useDispatch, useSelector } from "react-redux";
 import {addToCart } from '../../components/context/slices/cartSlice'
+import { Link } from "react-router-dom";
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
   const wishlist = useSelector(state => state.wishlist.value);
@@ -24,14 +25,17 @@ const ProductCard = ({ product }) => {
         }
 
       </div>
+      <Link to={`/single/${product.id}`}>
       <img
         src={product.thumbnail}
         alt={product.title}
         className="w-full  lg:w-full h-48 object-contain overflow-hidden rounded-t-lg mt-4"
       />
+      </Link>
       <div className="mt-4">
         <h3 className="par1 text-lg font-semibold">{product.title}</h3>
         <p className="par  lg:text-sm text-gray-600 mt-2">{product.description}</p>
+        
         <div className="flex items-center flex-wrap mt-2">
           {[...Array(5)].map((_, index) => (
             <FaStar
@@ -62,7 +66,7 @@ const ProductList = ({title,titles}) => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("https://dummyjson.com/products");
+        const response = await axios.get("/products");
         setProducts(response.data.products);
       } catch (error) {
         console.error("Error fetching products:", error);

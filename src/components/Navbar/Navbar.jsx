@@ -241,7 +241,7 @@ const Navbar = () => {
           </div>
 
           <div className="fixed bottom-0 left-0 right-0 bg-white shadow-md flex justify-around items-center py-2 md:hidden z-50">
-            <Link className="flex flex-col items-center">
+            <Link to={'/'} className="flex flex-col items-center">
               <CiHome size={30} className="text-gray-700" />
               <span className="text-sm font-poppins">Главная</span>
             </Link>

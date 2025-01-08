@@ -54,24 +54,27 @@ const SearchSection = () => {
                 {data.map((el, index) => (
                   <div
                     key={index}
-                    className="bg-white border-b-[1px]  flex p-2 items-center justify-between mb-3"
+                   
                   >
-                   
-               <div className="flex gap-2 items-center justify-between" >
-               <div className="">
-                   <IoIosSearch size={20} />
-                   </div>
+                     <Link to={`/single/${el.id}`} >
+                    <div  className="bg-white border-b-[1px]  flex p-2 items-center justify-between mb-3">
+                    <div className="flex gap-2 items-center justify-between">
+                        <div className="">
+                          <IoIosSearch size={20} />
+                        </div>
 
-                   <div className="">
-                   <h3 className="font-medium ">{el.title}</h3>
-                   </div>
-               </div>
-                   
-                    <img
-                      src={el.thumbnail}
-                      alt={el.title}
-                      className="w-10 h-10 object-cover rounded-md"
-                    />
+                     
+                        <div className="">
+                          <h3 className="font-medium ">{el.title}</h3>
+                        </div>
+                      </div>
+                      <img
+                        src={el.thumbnail}
+                        alt={el.title}
+                        className="w-10 h-10 object-cover rounded-md"
+                      />
+                    </div>
+                    </Link>
                   </div>
                 ))}
               </div>
