@@ -121,7 +121,7 @@ const Navbar = () => {
               <Link>Каталог</Link>
             </li>
             <li>
-              <Link>Бренды</Link>
+              <Link to={"brands"}>Бренды</Link>
             </li>
             <li>
               <Link to={"actions"}>Акции и скидки</Link>
@@ -173,7 +173,7 @@ const Navbar = () => {
                 <Link onClick={() => setIsOpen(true)}>Каталог</Link>
               </li>
               <li>
-                <Link onClick={() => setMenuOpen(false)}>Бренды</Link>
+                <Link to={"brands"} onClick={() => setMenuOpen(false)}>Бренды</Link>
               </li>
               <li>
                 <Link to={"actions"} onClick={() => setMenuOpen(false)}>
