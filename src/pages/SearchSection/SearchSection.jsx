@@ -3,7 +3,7 @@ import { IoSearchOutline } from "react-icons/io5";
 import Footer from "../../components/Footer/Footer";
 import Navbar from "../../components/Navbar/Navbar";
 import { LuSearchX } from "react-icons/lu";
-import axios from "axios";
+import axios from "../../api/index";
 import { Link } from "react-router-dom";
 import { IoIosSearch } from "react-icons/io";
 
@@ -14,9 +14,9 @@ const SearchSection = () => {
   useEffect(() => {
     if (searchQuery.trim()) {
       axios
-        .get(`https://dummyjson.com/products/search?q=${searchQuery}`)
+        .get(`/cards`)
         .then((res) => {
-          setData(res?.data?.products || []);
+          setData(res?.data || []);
         })
         .catch((err) => {
           console.log(err);
@@ -51,29 +51,25 @@ const SearchSection = () => {
           <div>
             {data.length > 0 ? (
               <div className="shadow-md p-6 rounded-md">
-                {data.map((el, index) => (
-                  <div
-                    key={index}
-                   
-                  >
-                     <Link to={`/single/${el.id}`} >
-                    <div  className="bg-white border-b-[1px]  flex p-2 items-center justify-between mb-3">
-                    <div className="flex gap-2 items-center justify-between">
-                        <div className="">
-                          <IoIosSearch size={20} />
-                        </div>
+                {data.filter((item) => item.title.toLowerCase().includes(searchQuery.toLowerCase())).map((el, index) => (
+                  <div key={index}>
+                    <Link to={`/single/${el.id}`}>
+                      <div className="bg-white border-b-[1px]  flex p-2 items-center justify-between mb-3">
+                        <div className="flex gap-2 items-center justify-between">
+                          <div className="">
+                            <IoIosSearch size={20} />
+                          </div>
 
-                     
-                        <div className="">
-                          <h3 className="font-medium ">{el.title}</h3>
+                          <div className="">
+                            <h3 className="font-medium ">{el.title}</h3>
+                          </div>
                         </div>
+                        <img
+                          src={el.url[0]}
+                          alt={el.title}
+                          className="w-10 h-10 object-cover rounded-md"
+                        />
                       </div>
-                      <img
-                        src={el.thumbnail}
-                        alt={el.title}
-                        className="w-10 h-10 object-cover rounded-md"
-                      />
-                    </div>
                     </Link>
                   </div>
                 ))}
