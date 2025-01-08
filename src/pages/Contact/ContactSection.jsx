@@ -15,7 +15,6 @@ const ContactSection = () => {
 
   return (
   <>
-  <Navbar/>
     <div className="max-w-7xl mx-auto p-4 bg-white">
       <h1 className="text-2xl font-semibold text-gray-800 mb-8">Контакты</h1>
       

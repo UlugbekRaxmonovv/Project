@@ -28,7 +28,6 @@ const SearchSection = () => {
 
   return (
     <>
-      <Navbar />
       <div className="max-w-4xl mx-auto px-4 py-14">
         <h1 className="text-2xl font-medium text-center text-gray-800 mb-8">
           ПОИСК

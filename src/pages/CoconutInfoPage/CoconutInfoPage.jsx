@@ -7,7 +7,6 @@ import { VscArrowLeft } from 'react-icons/vsc';
 const CoconutInfoPage = () => {
   return (
 <>
-<Navbar/>
     <div className="container">
 <div className="py-8">
 <div className="">

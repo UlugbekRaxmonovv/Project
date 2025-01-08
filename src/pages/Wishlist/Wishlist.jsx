@@ -15,7 +15,6 @@ const Wishlist = () => {
 
   return (
    <>
-   <Navbar/>
 
    <div className="container">
     <h2 className="text-4xl text-center py-8">Избранное</h2>

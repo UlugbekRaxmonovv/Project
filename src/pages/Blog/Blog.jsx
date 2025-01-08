@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 const Blog = () => {
   return (
     <>
-    <Navbar/>
     <section className="bg-white  py-8">
       <div className="container mx-auto px-4">
         <h2 className="text-2xl mt-6 mb-8 text-center">Блог</h2>

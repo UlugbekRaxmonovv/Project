@@ -14,7 +14,6 @@ const Promotions = () => {
   ];
   return (
 <>
-<Navbar/>
     <div className="container">
 <div className="py-8">
 

@@ -5,7 +5,6 @@ import Aksiya from '../../assets/images/pag1.png'
 const Gift = () => {
   return (
     <>
-    <Navbar/>
     <div className="container">
 <div className="py-8">
       <h1 className="text-4xl font-medium text-gray-700 mb-6">

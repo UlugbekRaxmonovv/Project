@@ -14,6 +14,7 @@ import Zakast from './pages/Zakast/Zakast'
 import Gift from './pages/Gift/Gift'
 import Loyalty from './pages/Loyalty/Loyalty'
 import { Toaster } from 'react-hot-toast'
+import Navbar from './components/Navbar/Navbar'
 function App() {
 
   return (
@@ -22,6 +23,7 @@ function App() {
   position="top-center"
   reverseOrder={false}
 />
+<Navbar/>
     <Routes>
     <Route path='/' element={<Home/>}/>
     <Route path='/about' element={<About/>}/>

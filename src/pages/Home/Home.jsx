@@ -9,7 +9,6 @@ import Main from '../../components/Main/Main'
 const Home = () => {
   return (
     <>
-    <Navbar/>
     <Main/>
     <ProductList title={"Новинки"}/>
     <Banner/>
