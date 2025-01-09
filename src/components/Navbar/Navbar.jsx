@@ -191,15 +191,15 @@ const Navbar = () => {
                 </Link>
               </li>
               <li>
-                <Link >Как заказать?</Link>
+                <Link to={"pages/how-to-order"} >Как заказать?</Link>
               </li>
               <li>
-                <Link >
+                <Link to={"pages/gifts-on-buy"}>
                   Подарки при покупке
                 </Link>
               </li>
               <li>
-                <Link >
+                <Link  to={"/pages/loyalty"}>
                   Как получить Кэшбэк?
                 </Link>
               </li>
