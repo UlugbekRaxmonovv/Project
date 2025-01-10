@@ -135,7 +135,7 @@ const Korzinka = () => {
           </button>
         </div>
         <div className="border-t border-gray-300">
-          <div className="grid grid-cols-5 gap-4 py-4 text-sm font-semibold text-gray-600">
+          <div className="grid grid-cols-5 gap-2 py-4 text-[10px] font-semibold text-gray-600">
             <div>ПРОДУКТ</div>
             <div className="text-center">ЦЕНА</div>
             <div className="text-center">КОЛИЧЕСТВО</div>
@@ -151,7 +151,7 @@ const Korzinka = () => {
                     alt={product.name}
                     className="w-16 h-16 object-cover"
                   />
-                  <span className="text-sm font-medium">{product.title}</span>
+                  <span className="par1 text-sm font-medium">{product.title}</span>
                 </div>
                 <div className="text-center text-sm">
                   {product.price.toLocaleString()} сумов
@@ -200,7 +200,7 @@ const Korzinka = () => {
               </span>
               <button
                 onClick={() => setIsModalOpen(true)}
-                className="bg-pink-500 text-white px-6 py-2  hover:bg-pink-600 transition"
+                className="bg-pink-500 text-white px-6 py-2  whitespace-nowrap hover:bg-pink-600 transition"
               >
                 Оформить заказ
               </button>

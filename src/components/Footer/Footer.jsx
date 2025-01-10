@@ -5,6 +5,7 @@ import goog from '../../assets/images/googl1.png'
 import { FaSquareFacebook } from "react-icons/fa6";
 import { RiInstagramFill } from "react-icons/ri";
 import { FaTelegram } from "react-icons/fa";
+import BackToTop from "../BackToTop/BackToTop";
 const Footer = () => {
   return (
     <footer className="bg-gray-100 text-gray-700 ">
@@ -57,6 +58,7 @@ const Footer = () => {
           <p className="mt-2 sm:mt-0">Сайт разработан в Exord Soft</p>
         </div>
       </div>
+      <BackToTop/>
     </footer>
   );
 };

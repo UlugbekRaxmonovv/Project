@@ -1,5 +1,6 @@
 import React from 'react'
 import Aksiay from '../../assets/images/aksiya.png'
+import { Link } from 'react-router-dom'
 const Aksiya = () => {
   return (
     <section className="bg-white py-8 ">
@@ -18,12 +19,11 @@ const Aksiya = () => {
             <p className="text-gray-600 text-sm mb-4">
             Скидки на ваши любимые тканевые маски!
             </p>
-            <a
-              href="#"
+            <Link to={"/actions/masks-sale"}
               className="text-red-500 text-sm font-semibold hover:underline"
             >
               ПОДРОБНЕЕ
-            </a>
+            </Link>
           </div>
         </div>
       </div>

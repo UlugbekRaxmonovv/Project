@@ -10,7 +10,7 @@ import {
 } from "react-icons/ci";
 import { FaBars, FaTimes } from "react-icons/fa";
 import logo from "../../assets/images/logo.svg";
-import { VscChromeClose, VscClose } from "react-icons/vsc";
+import { VscChromeClose, VscClose, VscDebugBreakpointFunction } from "react-icons/vsc";
 import { useSelector } from "react-redux";
 import Katalog from "../Katalog/Katalog";
 import { MdLocalPhone } from "react-icons/md";
@@ -77,7 +77,11 @@ const Navbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const cartItems = useSelector((state) => state.cart.value);
   const [isOpen, setIsOpen] = useState(false);
-
+  const setIsModalOpens = () => {
+    setIsModalOpen(true);
+    setIsOpen(false);
+  };
+  
   cartItems.length;
   return (
     <>
@@ -117,8 +121,9 @@ const Navbar = () => {
             />
           </Link>
           <ul className="hidden md:flex items-center gap-6 font-poppins">
-            <li onClick={() => setIsOpen(!isOpen)}>
-              <Link>Каталог</Link>
+            <li onClick={() => setIsOpen(!isOpen)} className="flex items-center">
+              <Link>Каталог</Link> <VscDebugBreakpointFunction className="transform rotate-180" size={10} />
+
             </li>
             <li>
               <Link to={"brands"}>Бренды</Link>
@@ -222,7 +227,7 @@ const Navbar = () => {
               <p>Избранное</p>
             </Link>
             <Link
-              onClick={() => setIsModalOpen(true)}
+              onClick={setIsModalOpens}
               className="flex items-center gap-2 font-poppins"
             >
               <CiUser size={25} />
